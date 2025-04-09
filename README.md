@@ -15,9 +15,9 @@ A simple and elegant feedback collection app built with Next.js 14 (App Router),
 - ✅ Snackbar-style success message on feedback submission
 - 🚀 Deployed on **netlify**
 
----
 
-## 📦 Tech Stack
+
+📦 Tech Stack
 
 | Tool         | Description                            |
 |--------------|----------------------------------------|
@@ -26,35 +26,34 @@ A simple and elegant feedback collection app built with Next.js 14 (App Router),
 | Supabase     | Backend-as-a-service (Postgres + API)  |
 | netlify       | Deployment platform                    |
 
----
 
-## 🛠️ Setup Instructions
 
-### 1. Clone the Repository
+ 🛠️ Setup Instructions
+
+1. Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/feedback-collector.git
 cd feedback-collector
 ```
 
-### 2. Install Dependencies
+2. Install Dependencies
 
-```bash
+
 npm install
 # or
 yarn install
-```
 
-### 3. Create a `.env.local` File
 
-```env
+3. Create a `.env.local` File
+
+
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-```
 
 Get these keys from your [Supabase project dashboard](https://app.supabase.com/).
 
-### 4. Supabase Database Setup
+4. Supabase Database Setup
 
 Create a table named `feedbacks` in Supabase with the following schema:
 
@@ -65,17 +64,17 @@ Create a table named `feedbacks` in Supabase with the following schema:
 | message   | text      |
 | timestamp | timestamptz (default: now()) |
 
-### 5. Start the Dev Server
+5. Start the Dev Server
 
-```bash
+
 npm run dev
-```
+
 
 Navigate to `http://localhost:3000` in your browser.
 
----
 
-## 🚀 Deployment (netlify)
+
+ 🚀 Deployment (netlify)
 
 1. Push your code to GitHub.
 2. Go to [netlify.com](https://netlify.com), import your GitHub repo.
