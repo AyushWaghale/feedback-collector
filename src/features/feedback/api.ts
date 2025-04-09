@@ -5,7 +5,7 @@ export const submitFeedback = async (data: {
     email: string
     message: string
   }) => {
-    const res = await fetch('/api/submit-feedback', {
+    const res = await fetch('https://feedback-collectora.netlify.app/api/submit-feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -14,7 +14,7 @@ export const submitFeedback = async (data: {
   }
   
   export const getFeedbacks = async () => {
-    const res = await fetch('/api/feedbacks')
+    const res = await fetch('https://feedback-collectora.netlify.app/api/feedbacks')
     return res.json()
   }
   
