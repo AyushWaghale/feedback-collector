@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { toast } from 'sonner'
 import { submitFeedback } from '../../features/feedback/api'
 
 export default function FeedbackForm() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [loading, setLoading] = useState(false)
-  const [successMsg, setSuccessMsg] = useState('')
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -21,10 +21,9 @@ export default function FeedbackForm() {
     try {
       await submitFeedback(form)
       setForm({ name: '', email: '', message: '' })
-      setSuccessMsg('✅ Thank you! Your feedback has been submitted.')
-      setTimeout(() => setSuccessMsg(''), 4000)
+      toast.success('✅ Feedback submitted successfully!')
     } catch (error) {
-      setSuccessMsg('❌ Something went wrong. Please try again.')
+      toast.error('❌ Something went wrong. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -32,13 +31,14 @@ export default function FeedbackForm() {
 
   return (
     <form
-  onSubmit={handleSubmit}
-  className="space-y-4 p-6 rounded-xl border bg-white text-black 
-             dark:bg-gray-800 dark:text-white dark:border-gray-700 shadow"
->
-      <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
-        Leave your feedback ✍️
-      </h2>
+      onSubmit={handleSubmit}
+      className="space-y-4 p-6 rounded-xl border shadow"
+      style={{
+        backgroundColor: 'var(--background)',
+        color: 'var(--foreground)',
+      }}
+    >
+      <h2 className="text-xl font-semibold">Leave your feedback ✍️</h2>
 
       <input
         name="name"
@@ -46,7 +46,7 @@ export default function FeedbackForm() {
         value={form.name}
         onChange={handleChange}
         required
-        className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="w-full p-3 border rounded bg-transparent focus:outline-none"
       />
 
       <input
@@ -56,7 +56,7 @@ export default function FeedbackForm() {
         value={form.email}
         onChange={handleChange}
         required
-        className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="w-full p-3 border rounded bg-transparent focus:outline-none"
       />
 
       <textarea
@@ -66,7 +66,7 @@ export default function FeedbackForm() {
         onChange={handleChange}
         required
         rows={4}
-        className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="w-full p-3 border rounded bg-transparent focus:outline-none"
       />
 
       <button
@@ -76,12 +76,6 @@ export default function FeedbackForm() {
       >
         {loading ? 'Submitting...' : 'Submit Feedback'}
       </button>
-
-      {successMsg && (
-        <div className="mt-2 text-center text-sm text-green-600 dark:text-green-400 animate-fade-in">
-          {successMsg}
-        </div>
-      )}
     </form>
   )
 }
